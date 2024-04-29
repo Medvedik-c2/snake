@@ -92,6 +92,7 @@ public:
     }
 
     void logic() {
+        
         switch (dir) {
         case UP:
             headY--;
@@ -107,8 +108,10 @@ public:
             break;
         }
 
-        if (headX < 0 || headX >= width || headY < 0 || headY >= height)
-            gameOver = true;
+        if (headX < 0) headX = width-1;
+        if (headX > width) headX = 0;
+        if (headY < 0) headY = height-1;
+        if (headY > height) headY = 0;
 
         for (const auto &segment : snake) {
             if (headX == segment.first && headY == segment.second)
